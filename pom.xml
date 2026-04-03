@@ -37,7 +37,7 @@
     </pluginRepositories>
 
     <properties>
-        <revision>1.4.3</revision>
+        <revision>1.5.0</revision>
         <changelist>-SNAPSHOT</changelist>
         <jenkins.version>2.541.2</jenkins.version>
         <gitHubRepo>jenkinsci/${project.artifactId}</gitHubRepo>
