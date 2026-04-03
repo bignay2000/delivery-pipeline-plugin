@@ -20,7 +20,7 @@ package se.diabol.jenkins.pipeline.trigger;
 import hudson.model.AbstractProject;
 
 import java.util.List;
-import javax.annotation.CheckForNull;
+import edu.umd.cs.findbugs.annotations.CheckForNull;
 
 public final class ManualTriggerFactory {
 

@@ -54,7 +54,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import javax.annotation.CheckForNull;
+import edu.umd.cs.findbugs.annotations.CheckForNull;
 
 @ExportedBean(defaultVisibility = AbstractItem.VISIBILITY)
 public class Stage extends AbstractItem {

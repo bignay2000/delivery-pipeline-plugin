@@ -25,7 +25,7 @@ import hudson.model.CauseAction;
 import hudson.util.RunList;
 
 import java.util.List;
-import javax.annotation.CheckForNull;
+import edu.umd.cs.findbugs.annotations.CheckForNull;
 
 public final class BuildUtil {
 

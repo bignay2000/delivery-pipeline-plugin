@@ -69,8 +69,7 @@ import java.util.Set;
 import java.util.concurrent.TimeoutException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.annotation.Nonnull;
-import javax.servlet.ServletException;
+import edu.umd.cs.findbugs.annotations.NonNull;
 
 public class WorkflowPipelineView extends View implements PipelineView {
 
@@ -324,11 +323,15 @@ public class WorkflowPipelineView extends View implements PipelineView {
     }
 
     @Override
-    public Item doCreateItem(StaplerRequest req, StaplerResponse rsp) throws IOException, ServletException {
-        if (!isDefault()) {
-            return getOwner().getPrimaryView().doCreateItem(req, rsp);
-        } else {
-            return jenkins().doCreateItem(req, rsp);
+    public Item doCreateItem(StaplerRequest req, StaplerResponse rsp) throws IOException {
+        try {
+            if (!isDefault()) {
+                return getOwner().getPrimaryView().doCreateItem(req, rsp);
+            } else {
+                return jenkins().doCreateItem(req, rsp);
+            }
+        } catch (javax.servlet.ServletException e) {
+            throw new IOException(e);
         }
     }
 
@@ -410,9 +413,13 @@ public class WorkflowPipelineView extends View implements PipelineView {
     }
 
     @Override
-    protected void submit(StaplerRequest req) throws IOException, ServletException, Descriptor.FormException {
-        req.bindJSON(this, req.getSubmittedForm());
-        componentSpecs = req.bindJSONToList(ComponentSpec.class, req.getSubmittedForm().get("componentSpecs"));
+    protected void submit(StaplerRequest req) throws IOException, Descriptor.FormException {
+        try {
+            req.bindJSON(this, req.getSubmittedForm());
+            componentSpecs = req.bindJSONToList(ComponentSpec.class, req.getSubmittedForm().get("componentSpecs"));
+        } catch (javax.servlet.ServletException e) {
+            throw new IOException(e);
+        }
     }
 
     private List<Pipeline> resolvePipelines(WorkflowJob job) throws PipelineException {
@@ -497,7 +504,7 @@ public class WorkflowPipelineView extends View implements PipelineView {
             return FormValidation.ok();
         }
 
-        @Nonnull
+        @NonNull
         @Override
         public String getDisplayName() {
             return "Delivery Pipeline View for Jenkins Pipelines";
@@ -529,7 +536,7 @@ public class WorkflowPipelineView extends View implements PipelineView {
         @Extension
         public static class DescriptorImpl extends Descriptor<WorkflowPipelineView.ComponentSpec> {
 
-            @Nonnull
+            @NonNull
             @Override
             public String getDisplayName() {
                 return "";

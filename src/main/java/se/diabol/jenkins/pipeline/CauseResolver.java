@@ -23,7 +23,7 @@ import se.diabol.jenkins.pipeline.domain.TriggerCause;
 import se.diabol.jenkins.pipeline.util.JenkinsUtil;
 
 import java.util.List;
-import javax.annotation.CheckForNull;
+import edu.umd.cs.findbugs.annotations.CheckForNull;
 
 public abstract class CauseResolver implements ExtensionPoint {
 

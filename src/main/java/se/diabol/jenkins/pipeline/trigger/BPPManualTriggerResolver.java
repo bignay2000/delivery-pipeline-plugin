@@ -27,7 +27,7 @@ import se.diabol.jenkins.pipeline.util.ProjectUtil;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.annotation.CheckForNull;
+import edu.umd.cs.findbugs.annotations.CheckForNull;
 
 @Extension(optional = true)
 public class BPPManualTriggerResolver extends ManualTriggerResolver {
