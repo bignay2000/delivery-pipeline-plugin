@@ -61,6 +61,18 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <!-- CVE-2025-48924: force safe version of transitive dep from webdrivermanager -->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>3.20.0</version>
+            </dependency>
+            <!-- CVE-2012-0881, CVE-2022-23437, CVE-2013-4002, CVE-2020-14338: safe xerces replacing analysis-core's bundled version -->
+            <dependency>
+                <groupId>xerces</groupId>
+                <artifactId>xercesImpl</artifactId>
+                <version>2.12.2</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -78,7 +90,7 @@
         <dependency>
             <groupId>commons-beanutils</groupId>
             <artifactId>commons-beanutils</artifactId>
-            <version>1.9.4</version>
+            <version>1.11.0</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -114,7 +126,7 @@
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
-            <version>5.9.2</version>
+            <version>6.1.0</version>
             <scope>test</scope>
         </dependency>
 
@@ -165,6 +177,11 @@
                 <exclusion>
                     <groupId>com.google.code.findbugs</groupId>
                     <artifactId>annotations</artifactId>
+                </exclusion>
+                <!-- CVE-2012-0881, CVE-2022-23437, CVE-2013-4002, CVE-2020-14338: exclude vulnerable xerces -->
+                <exclusion>
+                    <groupId>xerces</groupId>
+                    <artifactId>xercesImpl</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
